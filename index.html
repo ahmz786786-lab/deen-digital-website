@@ -218,17 +218,28 @@
       transition: transform 0.3s;
     }
     .hero-app-card:hover { transform: translateY(-4px); }
-    .hero-app-card:nth-child(2) { margin-top: 24px; }
-    .hero-app-card:nth-child(3) { margin-top: -24px; }
+    .hero-app-card:nth-child(even) { margin-top: 28px; }
     .hero-app-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 24px;
       margin: 0 auto 12px;
+      overflow: hidden;
+    }
+    .hero-app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .hero-app-icon img.logo-contain {
+      object-fit: contain;
+      padding: 6px;
+      background: #fff;
     }
     .hero-app-card h4 {
       font-size: 14px;
@@ -301,14 +312,26 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.07);
     }
     .app-icon-large {
-      width: 80px;
-      height: 80px;
-      border-radius: 20px;
+      width: 88px;
+      height: 88px;
+      border-radius: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 36px;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+    .app-icon-large img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+    .app-icon-large img.logo-contain {
+      object-fit: contain;
+      padding: 10px;
+      background: #fff;
     }
     .app-info { flex: 1; }
     .app-info-header {
@@ -469,9 +492,10 @@
       .section-title { font-size: 28px; }
 
       .about-grid { grid-template-columns: 1fr; }
-      .app-card { flex-direction: column; text-align: center; }
-      .app-info-header { justify-content: center; }
+      .app-card { flex-direction: column; text-align: center; align-items: center; }
+      .app-info-header { justify-content: center; flex-wrap: wrap; }
       .app-features { justify-content: center; }
+      .app-icon-large { margin-bottom: 8px; }
       .company-details { grid-template-columns: 1fr; }
     }
 
@@ -532,22 +556,22 @@
       <div class="hero-visual">
         <div class="hero-visual-grid">
           <div class="hero-app-card">
-            <div class="hero-app-icon" style="background:rgba(107,28,35,0.1);">&#128332;</div>
+            <div class="hero-app-icon"><img src="images/cmic-icon.png" alt="CMIC logo" class="logo-contain"></div>
             <h4>CMIC</h4>
             <p>Mosque App</p>
           </div>
           <div class="hero-app-card">
-            <div class="hero-app-icon" style="background:rgba(255,140,66,0.12);">&#129361;</div>
+            <div class="hero-app-icon"><img src="images/halal-icon.png" alt="Halal Scanner logo"></div>
             <h4>Halal Scanner</h4>
             <p>Food Verification</p>
           </div>
           <div class="hero-app-card">
-            <div class="hero-app-icon" style="background:rgba(45,139,122,0.1);">&#128149;</div>
+            <div class="hero-app-icon"><img src="images/pairedm-icon.png" alt="PAired M logo" class="logo-contain"></div>
             <h4>PAired M</h4>
             <p>Islamic Matrimony</p>
           </div>
           <div class="hero-app-card">
-            <div class="hero-app-icon" style="background:rgba(76,175,80,0.1);">&#128220;</div>
+            <div class="hero-app-icon" style="background:linear-gradient(135deg,rgba(76,175,80,0.15),rgba(76,175,80,0.05));">&#128220;</div>
             <h4>Plan My Estate</h4>
             <p>Islamic Will Planning</p>
           </div>
@@ -597,7 +621,7 @@
 
         <!-- CMIC -->
         <div class="app-card fade-in">
-          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(107,28,35,0.12),rgba(107,28,35,0.06));">&#128332;</div>
+          <div class="app-icon-large"><img src="images/cmic-icon.png" alt="CMIC logo" class="logo-contain"></div>
           <div class="app-info">
             <div class="app-info-header">
               <h3>Croydon Mosque App</h3>
@@ -621,7 +645,7 @@
 
         <!-- Halal Scanning App -->
         <div class="app-card fade-in">
-          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(255,140,66,0.15),rgba(255,140,66,0.06));">&#129361;</div>
+          <div class="app-icon-large"><img src="images/halal-icon.png" alt="Halal Scanning App logo"></div>
           <div class="app-info">
             <div class="app-info-header">
               <h3>The Halal Scanning App</h3>
@@ -642,7 +666,7 @@
 
         <!-- PAired M -->
         <div class="app-card fade-in">
-          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(45,139,122,0.12),rgba(45,139,122,0.06));">&#128149;</div>
+          <div class="app-icon-large"><img src="images/pairedm-icon.png" alt="PAired M logo" class="logo-contain"></div>
           <div class="app-info">
             <div class="app-info-header">
               <h3>PAired M</h3>
@@ -661,7 +685,7 @@
 
         <!-- Plan My Estate -->
         <div class="app-card fade-in">
-          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(76,175,80,0.12),rgba(76,175,80,0.06));">&#128220;</div>
+          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(76,175,80,0.15),rgba(76,175,80,0.05));">&#128220;</div>
           <div class="app-info">
             <div class="app-info-header">
               <h3>Plan My Estate</h3>

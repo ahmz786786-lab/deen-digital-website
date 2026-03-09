@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deen Digital LTD - Islamic App Development</title>
+  <meta name="description" content="Deen Digital LTD builds purposeful mobile applications for the Muslim community. From halal food scanning to mosque apps and Islamic matrimony.">
+  <meta name="keywords" content="Islamic apps, halal food scanner, mosque app, Muslim community, Deen Digital, Croydon, mobile development">
+  <meta property="og:title" content="Deen Digital LTD">
+  <meta property="og:description" content="Building purposeful apps for the Muslim community.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127775;</text></svg>">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a2e;
+      background: #ffffff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Utility ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0d7377;
+      background: rgba(13,115,119,0.08);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: #1a1a2e;
+    }
+    .section-subtitle {
+      font-size: 17px;
+      color: #555;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .badge-live { background: #e8f5e9; color: #2e7d32; }
+    .badge-soon { background: #fff3e0; color: #e65100; }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #1a1a2e;
+    }
+    .nav-brand-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #0d7377, #14a3a8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #555;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #0d7377; }
+    .nav-contact {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #0d7377, #14a3a8);
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-contact:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(13,115,119,0.3);
+    }
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #1a1a2e;
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 140px 0 80px;
+      background: linear-gradient(165deg, #f0fafa 0%, #ffffff 50%, #fafafa 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(13,115,119,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+    .hero-text { max-width: 560px; }
+    .hero-text h1 {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: #1a1a2e;
+    }
+    .hero-text h1 span {
+      background: linear-gradient(135deg, #0d7377, #14a3a8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-text p {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .hero-stat-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0d7377;
+    }
+    .hero-stat-label {
+      font-size: 13px;
+      color: #888;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .hero-visual {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .hero-visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: 380px;
+    }
+    .hero-app-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.04);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .hero-app-card:hover { transform: translateY(-4px); }
+    .hero-app-card:nth-child(2) { margin-top: 24px; }
+    .hero-app-card:nth-child(3) { margin-top: -24px; }
+    .hero-app-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 12px;
+    }
+    .hero-app-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .hero-app-card p {
+      font-size: 11px;
+      color: #888;
+    }
+
+    /* ── About ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .about-card {
+      background: #fafafa;
+      border-radius: 16px;
+      padding: 32px 24px;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .about-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .about-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .about-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .about-card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ── Apps ── */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .app-card {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: #fafafa;
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .app-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+    }
+    .app-icon-large {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      flex-shrink: 0;
+    }
+    .app-info { flex: 1; }
+    .app-info-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .app-info h3 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .app-info .app-tagline {
+      font-size: 14px;
+      color: #0d7377;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .app-info p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .app-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .app-feature-pill {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: rgba(13,115,119,0.07);
+      color: #0d7377;
+    }
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 10px 20px;
+      background: #1a1a2e;
+      color: white;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .app-store-btn:hover { background: #2a2a4e; }
+    .app-store-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+    }
+
+    /* ── Tech ── */
+    .tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .tech-pill {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: #f5f5f5;
+      color: #333;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ── Company ── */
+    .company-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .company-card {
+      background: #fafafa;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .company-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .company-card p {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a2e;
+      line-height: 1.5;
+    }
+
+    /* ── Contact / Footer ── */
+    .contact {
+      background: linear-gradient(165deg, #0d7377, #14a3a8);
+      color: white;
+      text-align: center;
+      padding: 80px 0;
+    }
+    .contact h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .contact p {
+      font-size: 17px;
+      opacity: 0.85;
+      margin-bottom: 32px;
+    }
+    .contact-email {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.15);
+      padding: 14px 32px;
+      border-radius: 12px;
+      color: white;
+      transition: background 0.2s;
+    }
+    .contact-email:hover { background: rgba(255,255,255,0.25); }
+
+    footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 0;
+      font-size: 13px;
+    }
+    footer a {
+      color: rgba(255,255,255,0.7);
+      transition: color 0.2s;
+    }
+    footer a:hover { color: white; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-contact { display: none; }
+      .nav-mobile-toggle { display: block; }
+
+      .hero { padding: 100px 0 60px; }
+      .hero-content { flex-direction: column; text-align: center; }
+      .hero-text h1 { font-size: 34px; }
+      .hero-text p { font-size: 16px; }
+      .hero-stats { justify-content: center; gap: 24px; }
+      .hero-visual-grid { width: 100%; max-width: 320px; margin: 0 auto; }
+
+      .section-title { font-size: 28px; }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .app-card { flex-direction: column; text-align: center; }
+      .app-info-header { justify-content: center; }
+      .app-features { justify-content: center; }
+      .company-details { grid-template-columns: 1fr; }
+    }
+
+    /* ── Animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">
+        <div class="nav-brand-icon">D</div>
+        Deen Digital
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#company">Company</a></li>
+      </ul>
+      <a href="#contact" class="nav-contact">Get in Touch</a>
+      <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Building <span>purposeful apps</span> for the Muslim community</h1>
+        <p>Deen Digital is a UK-based software studio crafting mobile applications that serve, connect, and empower Muslim communities worldwide.</p>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">Apps in Development</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">1</div>
+            <div class="hero-stat-label">Live on App Store</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">UK</div>
+            <div class="hero-stat-label">Based & Registered</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-grid">
+          <div class="hero-app-card">
+            <div class="hero-app-icon" style="background:rgba(107,28,35,0.1);">&#128332;</div>
+            <h4>CMIC</h4>
+            <p>Mosque App</p>
+          </div>
+          <div class="hero-app-card">
+            <div class="hero-app-icon" style="background:rgba(255,140,66,0.12);">&#129361;</div>
+            <h4>Halal Scanner</h4>
+            <p>Food Verification</p>
+          </div>
+          <div class="hero-app-card">
+            <div class="hero-app-icon" style="background:rgba(45,139,122,0.1);">&#128149;</div>
+            <h4>PAired M</h4>
+            <p>Islamic Matrimony</p>
+          </div>
+          <div class="hero-app-card">
+            <div class="hero-app-icon" style="background:rgba(76,175,80,0.1);">&#128220;</div>
+            <h4>Plan My Estate</h4>
+            <p>Islamic Will Planning</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">Technology with purpose</h2>
+        <p class="section-subtitle">We believe technology should make practising your faith easier, not harder. Every app we build solves a real need in the Muslim community.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card fade-in">
+          <div class="about-icon" style="background:rgba(13,115,119,0.1);">&#127775;</div>
+          <h3>Faith-First Design</h3>
+          <p>Every feature is designed with Islamic values at its core. We consult scholars and community leaders to ensure accuracy and authenticity.</p>
+        </div>
+        <div class="about-card fade-in">
+          <div class="about-icon" style="background:rgba(255,140,66,0.1);">&#128272;</div>
+          <h3>Privacy by Default</h3>
+          <p>Minimal data collection, no tracking, no selling data. Your information stays yours. We build privacy into every layer of our apps.</p>
+        </div>
+        <div class="about-card fade-in">
+          <div class="about-icon" style="background:rgba(76,175,80,0.1);">&#129302;</div>
+          <h3>AI-Powered</h3>
+          <p>We leverage cutting-edge artificial intelligence to deliver instant, accurate results — from scanning food labels to analysing ingredients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apps -->
+  <section class="section" id="apps" style="background:#fafafa;">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Our Apps</span>
+        <h2 class="section-title">Apps that serve the Ummah</h2>
+        <p class="section-subtitle">From your local mosque to your kitchen, our apps are designed to make everyday Muslim life easier.</p>
+      </div>
+
+      <div class="apps-grid">
+
+        <!-- CMIC -->
+        <div class="app-card fade-in">
+          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(107,28,35,0.12),rgba(107,28,35,0.06));">&#128332;</div>
+          <div class="app-info">
+            <div class="app-info-header">
+              <h3>Croydon Mosque App</h3>
+              <span class="badge badge-live">Live on App Store</span>
+            </div>
+            <div class="app-tagline">CMIC - Croydon Mosque & Islamic Centre</div>
+            <p>Stay connected with your mosque community. Live prayer times, Qibla direction, event announcements, and push notifications — all in one beautifully designed app built for the Croydon Muslim community.</p>
+            <div class="app-features">
+              <span class="app-feature-pill">Prayer Times</span>
+              <span class="app-feature-pill">Qibla Compass</span>
+              <span class="app-feature-pill">Announcements</span>
+              <span class="app-feature-pill">Events</span>
+              <span class="app-feature-pill">Push Notifications</span>
+            </div>
+            <a href="https://apps.apple.com/app/cmic/id6740519498" target="_blank" rel="noopener" class="app-store-btn">
+              <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              Download on App Store
+            </a>
+          </div>
+        </div>
+
+        <!-- Halal Scanning App -->
+        <div class="app-card fade-in">
+          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(255,140,66,0.15),rgba(255,140,66,0.06));">&#129361;</div>
+          <div class="app-info">
+            <div class="app-info-header">
+              <h3>The Halal Scanning App</h3>
+              <span class="badge badge-soon">Coming Soon</span>
+            </div>
+            <div class="app-tagline">Scan. Verify. Trust.</div>
+            <p>The complete halal food verification app. Scan barcodes, ingredient labels, receipts, and restaurant menus. Powered by AI with a database of 4M+ products, multi-madhab scholarly rulings, and community-driven verification.</p>
+            <div class="app-features">
+              <span class="app-feature-pill">Barcode Scanner</span>
+              <span class="app-feature-pill">AI Ingredient Analysis</span>
+              <span class="app-feature-pill">Receipt Scanner</span>
+              <span class="app-feature-pill">Menu Scanner</span>
+              <span class="app-feature-pill">Multi-Madhab Rulings</span>
+              <span class="app-feature-pill">Community Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAired M -->
+        <div class="app-card fade-in">
+          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(45,139,122,0.12),rgba(45,139,122,0.06));">&#128149;</div>
+          <div class="app-info">
+            <div class="app-info-header">
+              <h3>PAired M</h3>
+              <span class="badge badge-soon">Coming Soon</span>
+            </div>
+            <div class="app-tagline">Modern Islamic Matrimony</div>
+            <p>A beautifully designed matrimony app built for the Muslim community. Browse profiles, connect through mosque meetups, and find your match — all in a halal, privacy-respecting environment.</p>
+            <div class="app-features">
+              <span class="app-feature-pill">Profile Browsing</span>
+              <span class="app-feature-pill">Mosque Meetups</span>
+              <span class="app-feature-pill">Secure Messaging</span>
+              <span class="app-feature-pill">Privacy Focused</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan My Estate -->
+        <div class="app-card fade-in">
+          <div class="app-icon-large" style="background:linear-gradient(135deg,rgba(76,175,80,0.12),rgba(76,175,80,0.06));">&#128220;</div>
+          <div class="app-info">
+            <div class="app-info-header">
+              <h3>Plan My Estate</h3>
+              <span class="badge badge-soon">Coming Soon</span>
+            </div>
+            <div class="app-tagline">Islamic Will & Estate Planning</div>
+            <p>Plan your estate according to Islamic inheritance law (Faraid). Generate Sharia-compliant wills, calculate inheritance shares, and ensure your assets are distributed as prescribed.</p>
+            <div class="app-features">
+              <span class="app-feature-pill">Faraid Calculator</span>
+              <span class="app-feature-pill">Will Generator</span>
+              <span class="app-feature-pill">Asset Management</span>
+              <span class="app-feature-pill">Sharia Compliant</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="section" id="tech">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Technology</span>
+        <h2 class="section-title">Built with modern tools</h2>
+        <p class="section-subtitle">We use industry-leading technologies to build fast, reliable, and beautiful mobile experiences.</p>
+      </div>
+      <div class="tech-pills fade-in">
+        <span class="tech-pill">React Native</span>
+        <span class="tech-pill">Expo</span>
+        <span class="tech-pill">TypeScript</span>
+        <span class="tech-pill">Supabase</span>
+        <span class="tech-pill">Google Gemini AI</span>
+        <span class="tech-pill">RevenueCat</span>
+        <span class="tech-pill">Sentry</span>
+        <span class="tech-pill">EAS Build</span>
+        <span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">Edge Functions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Details -->
+  <section class="section" id="company" style="background:#fafafa;">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Company</span>
+        <h2 class="section-title">Registered in England & Wales</h2>
+        <p class="section-subtitle">Deen Digital LTD is a registered UK company specialising in business and domestic software development.</p>
+      </div>
+      <div class="company-details fade-in">
+        <div class="company-card">
+          <h4>Company Name</h4>
+          <p>Deen Digital LTD</p>
+        </div>
+        <div class="company-card">
+          <h4>Company Number</h4>
+          <p>17070943</p>
+        </div>
+        <div class="company-card">
+          <h4>Registered Office</h4>
+          <p>38 Napier Road, South Croydon, England, CR2 6HG</p>
+        </div>
+        <div class="company-card">
+          <h4>Company Type</h4>
+          <p>Private Limited Company</p>
+        </div>
+        <div class="company-card">
+          <h4>Incorporated</h4>
+          <p>4 March 2026</p>
+        </div>
+        <div class="company-card">
+          <h4>SIC Code</h4>
+          <p>62012 — Business & Domestic Software Development</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container fade-in">
+      <h2>Let's build something meaningful</h2>
+      <p>Have a question, partnership idea, or feedback about our apps? We'd love to hear from you.</p>
+      <a href="mailto:hello@deendigital.co.uk" class="contact-email">hello@deendigital.co.uk</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Deen Digital LTD. Company No. 17070943. Registered in England & Wales.</p>
+      <p style="margin-top:8px;">
+        <a href="https://find-and-update.company-information.service.gov.uk/company/17070943" target="_blank" rel="noopener">Companies House</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scroll animations -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
